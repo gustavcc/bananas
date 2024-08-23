@@ -15,4 +15,4 @@ class CutOfBanana(models.Model):
     segunda = models.IntegerField()
     porcentagem = models.FloatField(default=0.0)
     kg_caixa = models.IntegerField(default=22)
-    date = models.DateField()
+    data = models.DateField()

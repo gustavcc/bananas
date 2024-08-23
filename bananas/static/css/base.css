@@ -52,19 +52,24 @@ footer {
 }
 
 .search-div {
-    display: flex;
+    display: inline-block;  
     width: 100%;
 }
 
 .search-form {
     position: absolute;
+    display: inline-block;
+    width: 100%;
 }
 
 #search-btn {
     position: relative;
-    left: 87%;
-    bottom: 50%;
+    left: 89%;
+    top: -32px;
     cursor: pointer;
+    background-color: #edb500;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .navbar {
@@ -109,6 +114,7 @@ footer {
     border-radius: 5px;
     margin-right: 25px;
     margin-bottom: 10px;
+    width: 50%;
 }
 
 #dialog-sair {
