@@ -9,7 +9,7 @@ class LotForm(forms.ModelForm):
 class CutForm(forms.ModelForm):
     class Meta:
         model = CutOfBanana
-        fields = ['primeira', 'segunda', 'kg_caixa', 'data']
+        fields = ['primeira', 'segunda', 'kg_caixa', 'data', 'cotacao']
         widgets = {
             'data': forms.DateInput(attrs={'type': 'date'}),
         }

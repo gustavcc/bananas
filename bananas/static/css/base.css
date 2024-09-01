@@ -64,7 +64,7 @@ footer {
 
 #search-btn {
     position: relative;
-    left: 89%;
+    right: -89%;
     top: -32px;
     cursor: pointer;
     background-color: #edb500;
@@ -117,7 +117,7 @@ footer {
     width: 50%;
 }
 
-#dialog-sair {
+.dialog-sair {
     background-color: #b3140c;
     cursor: pointer;
     border: none;
@@ -148,5 +148,5 @@ dialog {
 
 .options {
     display: flex;
-    gap: 10px;
+    gap: 30px;
 }

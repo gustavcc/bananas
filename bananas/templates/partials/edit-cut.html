@@ -3,14 +3,15 @@
 {% block title %} Editando corte {{cut.data}} {% endblock %}
 
 {% block content %}
-
-<div class="offset-1 col-10">
-    <h1>Editando corte {{cut.data}}</h1>
-    <form method="POST" class="forms">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" class="btn btn-success" value="Editar Lote">
-        <input class="btn btn-success" value="Cancelar" onclick="location.href = '/lot/'+'{{cut.id_lot}}'">
-    </form>
-</div>
+<main>
+    <div class="offset-1 col-10">
+        <h1>Editando corte {{cut.data}}</h1>
+        <form method="POST" class="forms">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-success" value="Editar Corte">
+            <input class="btn btn-success" value="Cancelar" onclick="location.href = '/lot/'+'{{cut.id_lot}}'">
+        </form>
+    </div>
+</main>
 {% endblock %}

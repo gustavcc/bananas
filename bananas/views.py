@@ -44,7 +44,7 @@ def deleteCut(request, id):
     id_lot = cut.id_lot
     cut.delete()
     messages.info(request, 'Corte deletado com sucesso!')
-    return redirect('/lot/'+str(id_lot))
+    return redirect('/lot/'+str(id_lot))    
 
 def viewLot(request, id):
     if request.method == 'POST':
@@ -52,9 +52,20 @@ def viewLot(request, id):
         if form.is_valid():
             cutLot = form.save(commit=False)
             cutLot.id_lot = int(id)
+            kg = form.cleaned_data['kg_caixa']
+            cotacao = form.cleaned_data['cotacao']
             primeira = form.cleaned_data['primeira']
             segunda = form.cleaned_data['segunda']
+            cutLot.qtd_total = primeira + segunda
             cutLot.porcentagem = round(100*float(primeira/(primeira+segunda)))
+            
+            primeira_ajustada = kg*primeira/22
+            segunda_ajustada = kg*segunda/22
+            
+            print(((primeira_ajustada*cotacao) + (segunda_ajustada*cotacao)/2))
+            
+            cutLot.preco_total = ((primeira_ajustada*cotacao) + (segunda_ajustada*cotacao)/2)
+            
             cutLot.save()
             return redirect('/lot/'+str(id))
         else: 
@@ -93,8 +104,23 @@ def editCut(request, id):
     if request.method == 'POST':
         form = CutForm(request.POST, instance=cut)
         if form.is_valid():
-            form.save() 
-            return redirect('/lot/'+str(cut.id_lot))
+            cutLot = form.save(commit=False)
+            kg = form.cleaned_data['kg_caixa']
+            cotacao = form.cleaned_data['cotacao']
+            primeira = form.cleaned_data['primeira']
+            segunda = form.cleaned_data['segunda']
+            cutLot.qtd_total = primeira + segunda
+            cutLot.porcentagem = round(100*float(primeira/(primeira+segunda)))
+            
+            primeira_ajustada = kg*primeira/22
+            segunda_ajustada = kg*segunda/22
+            
+            print(((primeira_ajustada*cotacao) + (segunda_ajustada*cotacao)/2))
+            
+            cutLot.preco_total = ((primeira_ajustada*cotacao) + (segunda_ajustada*cotacao)/2)
+            
+            cutLot.save()
+            return redirect('/lot/'+str(cutLot.id_lot))
         else:
             return render(request, 'partials/edit-cut.html', {'cut': cut, 'form': form})
     else:
